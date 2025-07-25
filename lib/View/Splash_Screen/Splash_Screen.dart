@@ -1,6 +1,9 @@
+
 import 'package:demo_figma_design/View/Authentication_Screens/Login_Screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+import '../Home_Screen/home.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -14,10 +17,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
   }
@@ -25,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand, // Make the Stack expand to fill the Scaffold
         children: <Widget>[
@@ -44,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   // a. CircularProgressIndicator
                   const SizedBox.expand(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlueAccent),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.cyanAccent),
                       strokeWidth: 6.0,
                     ),
                   ),

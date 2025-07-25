@@ -12,10 +12,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cosmic',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.transparent,
+        scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: const SplashScreen(),
+
+      home:const SplashScreen() ,
     );
   }
 }

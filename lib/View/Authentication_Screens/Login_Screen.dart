@@ -1,8 +1,10 @@
 import 'package:demo_figma_design/Common_Widgets/bg_img_widget.dart';
+import 'package:demo_figma_design/View/Home_Screen/home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../consts/list.dart';
+import '../Home_Screen/home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -60,16 +62,17 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                height: (context.screenHeight*0.25),
-               // color: Colors.blueAccent,
-                child: Image.asset('assets/logo.png'),
-              ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+        
+            SizedBox(
+              height: (context.screenHeight*0.25),
+             // color: Colors.blueAccent,
+              child: Image.asset('assets/logo.png'),
+            ),
               Container(
+                height: context.screenHeight*0.75,
                 decoration: BoxDecoration(
                   color: Colors.black26,
                   borderRadius: BorderRadius.circular(16.0),
@@ -80,169 +83,187 @@ class _LoginScreenState extends State<LoginScreen> {
                       blurRadius: 8, // How blurry the shadow is
                       offset: const Offset(0, -4), // Changes position of shadow (x, y)
                     ),
+
                   ],
                 ),
-                child: Form(
-                  // Using a Form widget for better structure and potential validation
-                  key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20,10,20,10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center, // Center the column content vertically
-                      crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch children to fill horizontal space
-                      children: <Widget>[
-                        // App Logo (Optional)
-                       /* const Icon(
-                          Icons.lock_open, // Example icon
-                          size: 80,
-                          color: Colors.blueAccent,
-                        ),*/
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Sign in',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 28,
-                              fontWeight: FontWeight.bold
-                            ),
-
-                          ),
-                        ),
-                        const SizedBox(height: 5), // Spacing
-
-                        // Username TextField
-                        TextFormField(
-                          style: TextStyle(color: Colors.white),
-                          controller: _usernameController,
-                          decoration: InputDecoration(
-                            labelText: 'Username',
-                            hintText: 'Enter your username',
-                            prefixIcon: Icon(Icons.person), // Icon before the text input
-                            border: OutlineInputBorder(
-                             borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                          ),
-                          keyboardType: TextInputType.text, // Type of keyboard to show
-                          // Optional: Add validation
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your username';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 20), // Spacing
-
-                        // Password TextField
-                        TextFormField(
-                          style: TextStyle(color: Colors.white),
-                          controller: _passwordController,
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                            hintText: 'Enter your password',
-                            prefixIcon: Icon(Icons.lock),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            // If you want a show/hide password icon, you'd need more state management
-                          ),
-                          obscureText: true, // Hides the password text
-                          keyboardType: TextInputType.visiblePassword,
-                          // Optional: Add validation
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            return null;
-                          },
-                        ),
-                        //const SizedBox(height: 10), // Spacing
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            onPressed: () {
-                              // Handle "Forgot Password" action
-                              print("Forgot Password pressed");
-                            },
-                            child: const Text('Forgot Password?',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.green,
-                            ),),
-                          ),
-                        ),
-                        const SizedBox(height: 10), // Spacing
-
-                        // Login Button
-                        ElevatedButton(
-                          onPressed: _login, // Call the _login function when pressed
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueAccent, // Button background color
-                            padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            textStyle: const TextStyle(fontSize: 24),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                          ),
-                          child: const Text(
-                            'Sign in',
-                            style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold  ), // Text color for the button
-                          ),
-                        ),
-                        const SizedBox(height: 20), // Spacing
-
-                        // Optional: Forgot Password or Sign Up links
-                        Align(
-                          alignment: Alignment.center,
-                            child: Text('----------------- or Sign in using -----------------',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            )
-                            ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:
-                          List.generate(3, (index) => Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey,
-                              radius: 20,
-                              child: Image.asset(socialIconList[index],
-                                width:30
+                child: SingleChildScrollView(
+                  child: Form(
+                    // Using a Form widget for better structure and potential validation
+                    key: _formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20,10,20,10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end, // Center the column content vertically
+                        crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch children to fill horizontal space
+                        children: <Widget>[
+                          // App Logo (Optional)
+                         /* const Icon(
+                            Icons.lock_open, // Example icon
+                            size: 80,
+                            color: Colors.blueAccent,
+                          ),*/
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Sign in',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                fontWeight: FontWeight.bold
                               ),
-
+                  
                             ),
-                          )),
-
-                        ),
-                        SizedBox(height: 5,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Do you have an account? ',style: TextStyle(color: Colors.grey),),
-                            SizedBox(width: 5,),
-                            TextButton(
+                          ),
+                          const SizedBox(height: 5), // Spacing
+                  
+                          // Username TextField
+                          TextFormField(
+                            style: TextStyle(color: Colors.white),
+                            controller: _usernameController,
+                            decoration: InputDecoration(
+                              labelText: 'Username',
+                              hintText: 'Enter your username',
+                              prefixIcon: Icon(Icons.person), // Icon before the text input
+                              border: OutlineInputBorder(
+                               borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                            ),
+                            keyboardType: TextInputType.text, // Type of keyboard to show
+                            // Optional: Add validation
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your username';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 20), // Spacing
+                  
+                          // Password TextField
+                          TextFormField(
+                            style: TextStyle(color: Colors.white),
+                            controller: _passwordController,
+                            decoration: const InputDecoration(
+                              labelText: 'Password',
+                              hintText: 'Enter your password',
+                              prefixIcon: Icon(Icons.lock),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                              // If you want a show/hide password icon, you'd need more state management
+                            ),
+                            obscureText: true, // Hides the password text
+                            keyboardType: TextInputType.visiblePassword,
+                            // Optional: Add validation
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              return null;
+                            },
+                          ),
+                          //const SizedBox(height: 10), // Spacing
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: TextButton(
                               onPressed: () {
                                 // Handle "Forgot Password" action
-                                print("Registered Successfully!");
+                                print("Forgot Password pressed");
                               },
-                              child: const Text('Sign Up',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.green,
-                                ),),
+                              child: const Text('Forgot Password?',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.green,
+                              ),),
                             ),
-                          ],
-                        )
-                      ],
+                          ),
+                          const SizedBox(height: 10), // Spacing
+                  
+                          // Login Button
+                          Container(
+                            padding: EdgeInsets.fromLTRB(50,5,50,5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                            gradient: LinearGradient(
+                            colors: [Colors.cyanAccent, Colors.purpleAccent],
+                            ),
+
+                            ),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                shadowColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              onPressed: (){
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Home()),
+                                );
+                              },
+
+                              child: const Text(
+                                'Sign in',
+                                style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold,fontSize: 22  ), // Text color for the button
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20), // Spacing
+                  
+                          // Optional: Forgot Password or Sign Up links
+                          Align(
+                            alignment: Alignment.center,
+                              child: Text('----------------- or Sign in using -----------------',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              )
+                              ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:
+                            List.generate(3, (index) => Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: CircleAvatar(
+                                backgroundColor: Colors.grey,
+                                radius: 20,
+                                child: Image.asset(socialIconList[index],
+                                  width:30
+                                ),
+                  
+                              ),
+                            )),
+                  
+                          ),
+                          SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Do you have an account? ',style: TextStyle(color: Colors.grey),),
+                              SizedBox(width: 5,),
+                              TextButton(
+                                onPressed: () {
+                                  // Handle "Forgot Password" action
+                                  print("Registered Successfully!");
+                                },
+                                child: const Text('Sign Up',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.green,
+                                  ),),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+         
+          ],
         ),
       ),
     );
